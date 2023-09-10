@@ -34,14 +34,15 @@ export default {
 	data() {
 		return {
             defaultChain: '',
-            availableChains: ['sui:mainnet', 'sui:testnet', 'sui:devnet','sui:localnet'],
+            availableChains: ['sui:mainnet', 'sui:testnet', 'sui:devnet'],
             selectedLabel: '...',
             displayAddress: '',
 
             settings: {
                 'sui:localnet': {
-                    packageId: '0x716f3179dd857994782e77e65b7d545260bff54aa83a1c1fab94b601e6868337',
-                    liquidStoreId: '0xa5809d910001c87cbd9a635dc5002741f01e7a222f85628c85fb6c4e19d09d2d',
+                    packageId: '0x8929b38436b342c0bc325f269b019a2f06836fbbdfec23a1426ebd86cfaecfde',
+                    firstVPackageId: '0xf8fdf01acdbad7f73da30ba38cd52ff2a1f0496bd6613fabf0f1e3781cfb66d1',
+                    liquidStoreId: '0x376bc47e61c45ed0d21bd0891f97ed96c8591b3cea5be4e174d3f207b1ab9cb3',
                 },
                 'sui:devnet': {
                     packageId: '0x6d9b392ac3d96fd0779d825418680c91ccfa5a15ba20c0c7321df9bde0690963',
@@ -132,6 +133,10 @@ export default {
 	unmounted: function() {
 	},
 	mounted: function(){
+        if ((''+location.host).indexOf('localhost') != -1) {
+            this.availableChains.push('sui:localnet');
+        }
+
         this.$store.sui.$onAction((params)=>{
             if (params.name == 'request') {
                 this.request();

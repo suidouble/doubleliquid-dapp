@@ -75,6 +75,7 @@ export const useSuiStore = defineStore('sui', {
 				this.doubleLiquid = new LiquidDouble({
 					suiMaster: suiMaster,
 					packageId: settings.packageId,
+					firstVPackageId: settings.firstVPackageId,
 					liquidStoreId: settings.liquidStoreId,
 				});
 				if (suiMaster.connectedChain != this.connectedChain) {

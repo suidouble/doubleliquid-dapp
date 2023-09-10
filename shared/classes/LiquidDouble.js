@@ -7,6 +7,12 @@ const path = require('path');
 class LiquidDouble {
     constructor(params = {}) {
         this._packageId = params.packageId || null;
+        this._firstVPackageId = params.firstVPackageId || null;
+
+        if (!this._firstVPackageId) {
+            this._firstVPackageId = this._packageId;
+        }
+
         this._liquidStoreId = params.liquidStoreId || null;
         this._as = params.as || 'admin';
 
@@ -71,7 +77,7 @@ class LiquidDouble {
     }
 
     get coinType() {
-        return ''+this._packageId+'::suidouble_liquid_coin::SUIDOUBLE_LIQUID_COIN';
+        return ''+this._firstVPackageId+'::suidouble_liquid_coin::SUIDOUBLE_LIQUID_COIN';
     }
 
 	log(...args) {
@@ -232,6 +238,7 @@ class LiquidDouble {
         }
 
         const res = await this._mod.moveCall('deposit', [this._liquidStoreId, {type: 'SUI', amount: amount}, '0x0000000000000000000000000000000000000005']);
+
         if (res && res.status && res.status == 'success') {
             res.ldAmountSend = amount;
             res.ldType = 'deposit';
