@@ -59,17 +59,41 @@ export default {
             }
         },
         amountPercent() {
-            if (!this.ignorePercent) {
-                this.amount = ''+(parseFloat(this.availableAmount, 10) * this.amountPercent / 100).toFixed(3);  
+            if (this.__ignoreAmount && ( new Date() ).getTime() - this.__ignoreAmount.getTime() < 100) {
+
+                this.__ignoreAmount = null;
+
+            }  else {
+
+                this.__ignoreAmount = new Date();
+                this.amount = ''+(parseFloat(this.availableAmount, 10) * this.amountPercent / 100).toFixed(3); 
+                if (parseFloat(this.amount, 10) > parseFloat(this.availableAmount, 10)) {
+                    this.amount = this.availableAmount;
+                }
+            
             }
-            this.ignorePercent = false;
         },
         amount() {
-            this.ignorePercent = true;
-            if (!this.amount) {
-                this.amount = '1.0';
+            if (this.__ignoreAmount && ( new Date() ).getTime() - this.__ignoreAmount.getTime() < 100) {
+
+                this.__ignoreAmount = null;
+
+            }  else {
+
+                this.__ignoreAmount = new Date();
+                if (!this.amount) {
+                    this.amount = '1.0';
+                }
+                if (parseFloat(this.amount, 10) > parseFloat(this.availableAmount, 10)) {
+                    this.amount = this.availableAmount;
+                }
+                if (parseFloat(this.amount, 10) < 0) {
+                    this.amount = '0.0';
+                }
+
+                this.amountPercent = Math.floor( (parseFloat(this.amount) / parseFloat(this.availableAmount, 10)) * 100 );
+
             }
-            this.amountPercent = Math.floor( (parseFloat(this.amount) / parseFloat(this.availableAmount, 10)) * 100 );
         },
 	},
 	methods: {

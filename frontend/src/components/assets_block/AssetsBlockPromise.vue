@@ -2,7 +2,11 @@
 
 
     <q-item clickable v-ripple>
-        <q-item-section @click="openOnExplorer" >{{ displayAddress }}</q-item-section>
+        <q-item-section @click="openOnExplorer" >
+            <span>{{ displayAddress }} <q-icon name="open_in_new" /></span>
+        
+            
+        </q-item-section>
         <q-item-section side>
             {{ leftTimeHuman }}
         </q-item-section>

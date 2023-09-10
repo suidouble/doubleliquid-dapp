@@ -11,13 +11,13 @@ export const useSuiStore = defineStore('sui', {
 		doubleLiquid: null,
 
 		amount_sui: 0,
-		amount_sui_string: '0.0',
+		amount_sui_string: '-1',
 		amount_sui_loading: true,
 		amount_sui_time: null,
 		amount_sui_timeout: 10000,
 
 		amount_isui: 0,
-		amount_isui_string: '0.0',
+		amount_isui_string: '-1',
 		amount_isui_loading: true,
 		amount_isui_time: null,
 		amount_isui_timeout: 10000,
@@ -28,12 +28,12 @@ export const useSuiStore = defineStore('sui', {
 		current_price_timeout: 10000,
 
 		prices: [],
-		apy: 1,
+		apy: -1,
 		rateGrowthPer1d: 1,
 
 		promises: [],
 		promises_total_amount: 0,
-		promises_total_amount_string: '0.0',
+		promises_total_amount_string: '-1',
 
 		current_epoch: 0,
 		epoch_duration: 0,

@@ -3,7 +3,7 @@
     <div>
 
         <div class="assets_top_block" :class="{isConnected: isConnected}">
-                <div class="assets_top_block_not_connected">
+                <div class="assets_top_block_not_connected non-selectable">
                     <div class="text-center q-pt-md assets_transition_container">
 
                     <q-btn color="primary" label="Start stacking SUI" size="lg" unelevated @click="onClickStake" />
@@ -17,7 +17,7 @@
                 <div class="assets_top_block_connected">
                     <div class="text-left q-pt-md assets_transition_container">
 
-                        <div class="q-pa-md" style="max-width: 40vw; margin: 0 auto;">
+                        <div class="q-pa-md non-selectable assets_block_assets" >
                         <q-list bordered separator>
 
                             <q-expansion-item  >
@@ -61,7 +61,8 @@
                                             <q-spinner-dots size="20px" color="primary" v-if="amounts.isui == -1" />
                                             <span  v-if="amounts.isui != -1" >{{ parseFloat(amounts.isui, 10).toFixed(3) }}</span>
                                         </q-item-label>
-                                        <q-item-label><span class="text-primary" v-if="projectedApy">~{{ projectedApy.toFixed(3) }}% APY</span></q-item-label>
+                                        <q-item-label v-if="projectedApy == -1"><span class="text-primary" v-if="projectedApy"><q-spinner-dots size="20px" color="primary" /> APY</span></q-item-label>
+                                        <q-item-label v-if="projectedApy != -1"><span class="text-primary" v-if="projectedApy">~{{ projectedApy.toFixed(3) }}% APY</span></q-item-label>
                                     </q-item-section>
                                 </template>
 
@@ -94,7 +95,8 @@
                                         <q-item-label caption color="primary"  v-if="promisesTotalAmount == 0">
                                            &nbsp;
                                         </q-item-label>
-                                        <q-item-label   v-if="promisesTotalAmount != -1"><span class="text-primary asset_amount">{{ parseFloat(promisesTotalAmount, 10).toFixed(3) }} SUI</span></q-item-label>
+                                        <q-item-label v-if="promisesTotalAmount != -1"><span class="text-primary asset_amount">{{ parseFloat(promisesTotalAmount, 10).toFixed(3) }} SUI</span></q-item-label>
+                                        <q-item-label v-if="promisesTotalAmount == -1"><q-spinner-dots size="20px" color="primary" /></q-item-label>
                                     </q-item-section>
                                 </template>
 
@@ -158,9 +160,9 @@ export default {
                 sui: -1,
                 isui: -1,
             },
-            projectedApy: 1,
+            projectedApy: -1,
             promises: [],
-            promisesTotalAmount: '0.0',
+            promisesTotalAmount: '-1',
 
             showStakeDialog: false,
             showUnstakeDialog: false,
@@ -266,6 +268,9 @@ export default {
 </script>
 
 <style scoped>
+    .assets_block_assets {
+        width: 500px;
+    }
     .assets_top_block {
     }
 

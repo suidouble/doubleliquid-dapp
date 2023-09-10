@@ -9,9 +9,9 @@
         >
             <q-card-section class="rewards_simulator">
 
-                <div class="text-h6 text-center">Rewards simulator</div>
+                <div class="text-h6 text-center non-selectable">Rewards simulator</div>
 
-                <div class="q-pt-md">
+                <div class="q-pt-md non-selectable">
 
                     <q-input outlined v-model="simulatorInput" placeholder="Sui">
                     <template v-slot:prepend>
@@ -21,7 +21,7 @@
 
                 </div>
 
-                <div class="row q-pa-sm">
+                <div class="row q-pa-sm non-selectable">
                 <div class="col text-center col-6 text-left">
                     <strong>Best Price</strong>
                 </div>
@@ -29,7 +29,7 @@
                     1 Staked SUI = {{ currentPrice.toFixed(3) }} SUI
                 </div>
                 </div>
-                <div class="row q-pb-xs">
+                <div class="row q-pb-xs non-selectable">
                 <div class="col text-center col-12 text-center">
                     <strong>Projected yield <q-chip 
                         icon-right="info" color="primary" text-color="white" style="background-color: rgba(48, 164, 223, 0.623); color: var(--text-color)"
@@ -41,17 +41,17 @@
                 </div>
                 </div>
 
-                <div class="text-h6 text-center">
+                <div class="text-h6 text-center non-selectable">
                     Rewards summary
                 </div>
 
-                <div class="text-h6 text-subtitle2 text-center">
+                <div class="text-h6 text-subtitle2 text-center non-selectable">
                     With staking rewards compounding, the value of iSUI grows,<br/>resulting in a greater amount of SUI per iSUI over time.
                 </div>
 
             </q-card-section>
 
-            <q-card-section class="q-pt-none">
+            <q-card-section class="q-pt-none non-selectable">
 
                 <div class="row">
                 <div class="col text-center col-6">
@@ -99,7 +99,7 @@
         </q-card>
 
         <q-card
-        class="my-card col-12 col-md-4 q-mt-sm"
+        class="my-card col-12 col-md-4 q-mt-sm non-selectable"
         bordered
         flat
         >

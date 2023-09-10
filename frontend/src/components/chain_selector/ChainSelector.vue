@@ -99,6 +99,8 @@ export default {
         },
         selectChain(chain) {
             this.$q.localStorage.set('preferredChain', chain);
+            this.$q.localStorage.set('preferredAdapter', null);
+            
             this.selectedLabel = chain;
             location.reload();
         },

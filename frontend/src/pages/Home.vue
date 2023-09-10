@@ -1,11 +1,11 @@
 <template>
 
   <div>
-    <h3 class="text-center">Secure SUI and earn <br/>rewards without your funds <br/>locked in</h3>
+    <h3 class="text-center non-selectable">Secure SUI and earn <br/>rewards without your funds <br/>locked in</h3>
 
-    <h5 class="text-center">Simplified and secure participation in SUI staking</h5>
+    <h5 class="text-center non-selectable">Simplified and secure participation in SUI staking</h5>
 
-    <div class="text-center">
+    <div class="row justify-center q-gutter-md q-mt-md">
 
         <AssetsBlock />
         
