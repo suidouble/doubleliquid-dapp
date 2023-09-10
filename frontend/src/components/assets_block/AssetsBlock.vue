@@ -271,11 +271,11 @@ export default {
     .assets_block_assets {
         width: 500px;
     }
-    .assets_top_block {
+    /* .assets_top_block {
     }
 
     .assets_top_block.isConnected {
-    }
+    } */
 
     .assets_top_block_not_connected {
         display: block;
@@ -303,6 +303,6 @@ export default {
         color: var(--q-primary)
     }
 
-    .not_earning {}
+    /* .not_earning {} */
 
 </style>

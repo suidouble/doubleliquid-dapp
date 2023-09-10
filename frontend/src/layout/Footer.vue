@@ -8,7 +8,7 @@
 
         <div class="fit row no-wrap justify-center items-start content-start">
 
-          <q-btn flat type="a" href="https://github.com/suidouble/suidouble-sample-color" label="GitHub" />
+          <q-btn flat type="a" href="https://github.com/suidouble/doubleliquid-dapp" label="GitHub" />
 
         </div>
 
