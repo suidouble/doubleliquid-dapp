@@ -43,6 +43,18 @@ export default {
                     packageId: '0x716f3179dd857994782e77e65b7d545260bff54aa83a1c1fab94b601e6868337',
                     liquidStoreId: '0xa5809d910001c87cbd9a635dc5002741f01e7a222f85628c85fb6c4e19d09d2d',
                 },
+                'sui:devnet': {
+                    packageId: '0x6d9b392ac3d96fd0779d825418680c91ccfa5a15ba20c0c7321df9bde0690963',
+                    liquidStoreId: '0x4a6d93a6ead0f0c47b5e75e25ef28bd7080aa89151b61ec2e6f8bb24bc135ac3',
+                },
+                'sui:testnet': {
+                    packageId: '0xc797288b493acb9c18bd9e533568d0d88754ff617ecc6cc184d4a66bce428bdc',
+                    liquidStoreId: '0x884e328097377ae266feeda19ed774092dc9035fb82755bfd61cca4dd2c4c366',
+                },
+                'sui:mainnet': {
+                    packageId: '0x67e77b4e79e8c157e42c18eecf68e25047f6f95e657bd65387189411f2898ce3',
+                    liquidStoreId: '0x78d9273a9f774a2bd6c35cf79fbcf4029ee076cc249207610a3bcc0d6d0efc34',
+                },
             },
 		}
 	},

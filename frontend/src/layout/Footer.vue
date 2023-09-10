@@ -33,13 +33,13 @@ export default {
 
   .q-footer {
 		border-top: 1px solid rgba(192, 230, 255, .9);
-    backdrop-filter: var(--brand-back-filter);
+    /* backdrop-filter: var(--brand-back-filter); */
     background: var(--brand-header-color);
     color: var(--on-brand-text-color);
   }
 
   .body--dark .q-footer {
-    backdrop-filter: var(--brand-back-filter);
+    /* backdrop-filter: var(--brand-back-filter); */
     background: var(--brand-header-color-dark);
     color: var(--on-brand-text-color-dark);
   }

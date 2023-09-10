@@ -85,14 +85,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	.q-header {
-		backdrop-filter: var(--brand-back-filter);
+		/* backdrop-filter: var(--brand-back-filter); */
 		background: var(--brand-header-color);
 		color: var(--on-brand-text-color);
 		border-bottom: 1px solid rgba(192, 230, 255, .9);
 	}
 
 	.body--dark .q-header {
-		backdrop-filter: var(--brand-back-filter);
+		/* backdrop-filter: var(--brand-back-filter); */
 		background: var(--brand-header-color-dark);
 		color: var(--on-brand-text-color-dark);
 	}

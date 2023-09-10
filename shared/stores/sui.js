@@ -104,16 +104,21 @@ export const useSuiStore = defineStore('sui', {
 				if (averateGrowthCount > 0) {
 					averateGrowth = averateGrowth / averateGrowthCount;
 				}
+				if (averateGrowth < 1.004) {
+					averateGrowth = 1.000114;
+				}
+
+
 
 				// console.log(prices);
 				this.rateGrowthPer1d = averateGrowth;
 
 				const inAYear = Math.pow(averateGrowth, 365);
 				this.apy = (inAYear * 100) - 100;
-				this.averateGrowth
+				// this.averateGrowth
 				// console.log(apy);
 
-				await this.getCurrentPrice();
+				// await this.getCurrentPrice();
 			}
 		},
 		async refreshBalances() {
