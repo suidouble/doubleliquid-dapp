@@ -106,7 +106,7 @@ export default {
             }
 
             try {
-                
+
                 const res = await this.$store.sui.doubleLiquid.deposit({ amount: this.amount });
 
                 if (res && res.status == 'success') {
@@ -160,6 +160,10 @@ export default {
 
 .stake_popup .q-field__control .text-primary {
     font-size: 16px;
+}
+
+.stake_popup .q-btn {
+    text-transform: none;
 }
 
 

@@ -15,12 +15,17 @@
                     </template>
                     </q-input>
 
-
+                    <p class="text-right text-primary q-my-xs" v-if="fast">*Fast Unstake is subject to availability</p>
 
                 </div>
             </q-card-section>
             <q-card-actions align="center" class="text-primary q-pb-md">
-                <q-btn unelevated color="primary" label="Unstake" size="md" @click="doUnstake" :loading="isLoading" />
+
+                <q-btn unelevated color="primary" label="Unstake" size="md" @click="doUnstake" :loading="isLoading" v-if="!fast" />
+                <q-btn unelevated color="primary" label="Unstake Now" size="md" @click="doUnstake" :loading="isLoading" v-if="fast">
+                    <q-badge color="orange" floating>2% fee</q-badge>
+                </q-btn>
+
             </q-card-actions>
         </q-card>
     </q-dialog>
@@ -36,7 +41,11 @@ export default {
         show: {
             type: Boolean,
             default: false,
-        }
+        },
+        fast: {
+            type: Boolean,
+            default: false,
+        },
 	},
 	data() {
 		return {
@@ -97,6 +106,42 @@ export default {
         },
 	},
 	methods: {
+        async processUnstake(amount) {
+            if (this.fast) {
+                const res = await this.$store.sui.doubleLiquid.withdraw_fast({ amount: amount});
+
+                if (res && res.status == 'success') {
+                    this.$q.notify({
+                        progress: true,
+                        color: "positive",
+                        multiLine: true,
+                        textColor: "dark",
+                        message: 'Successfully unstaked '+this.amount+' iSUI',
+                        // color: 'primary',
+                    });
+
+                    return true;
+                }
+
+            } else {
+                const res = await this.$store.sui.doubleLiquid.withdraw({ amount: amount});
+
+                if (res && res.status == 'success') {
+                    this.$q.notify({
+                        progress: true,
+                        color: "positive",
+                        multiLine: true,
+                        textColor: "dark",
+                        message: 'Successfully unstaked '+this.amount+' iSUI. Pending Promise issued. You can exchange it for SUI when it is ready.',
+                        // color: 'primary',
+                    });
+
+                    return true;
+                }
+            }
+
+            return false;
+        },
         async doUnstake() {
             this.isLoading = true;
             await this.$store.sui.doubleLiquid.initialize();
@@ -114,23 +159,11 @@ export default {
             }
 
             try {
-                const res = await this.$store.sui.doubleLiquid.withdraw({ amount: amount});
-
-                if (res && res.status == 'success') {
-                    this.$q.notify({
-                        progress: true,
-                        color: "positive",
-                        multiLine: true,
-                        textColor: "dark",
-                        message: 'Successfully unstaked '+this.amount+' iSUI. Pending Promise issued. You can exchange it to SUI when it is ready.',
-                        // color: 'primary',
-                    });
-                }
+                await this.processUnstake(amount);
 
                 this.onHide();
                 this.showing = false;
                 await this.$store.sui.refreshBalances();
-
             } catch(e) {
                 console.error(e);
             }
@@ -165,6 +198,10 @@ export default {
         color: var(--text-color) !important;
         font-weight: bold !important;
         font-size: 20px !important;
+}
+
+.unstake_popup .q-btn {
+    text-transform: none;
 }
 
 .unstake_popup .q-field__control .text-primary {
