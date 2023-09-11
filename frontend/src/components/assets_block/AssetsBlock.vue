@@ -69,7 +69,8 @@
                                 <q-card>
                                     <q-card-section>
                                         <div class="q-gutter-sm">
-                                            <q-btn color="primary" label="Unstake" outline size="md"  @click="unstakeDialogIsFast = false; showUnstakeDialog = true" />
+                                            <q-btn color="primary" label="Unstake iSUI" outline size="md"  @click="unstakeDialogIsFast = false; showUnstakeDialog = true">
+                                            </q-btn>
                                             <q-btn color="primary" label="Fast Unstake" outline size="md"  @click="unstakeDialogIsFast = true; showUnstakeDialog = true">
                                                 <q-badge color="orange" floating>2% fee</q-badge>
                                             </q-btn>

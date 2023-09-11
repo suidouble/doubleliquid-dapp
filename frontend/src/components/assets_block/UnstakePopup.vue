@@ -11,7 +11,7 @@
 
                     <q-input outlined v-model="amount" placeholder="Sui">
                     <template v-slot:prepend>
-                    <q-icon name="water_drop" color="primary" /><span class="text-primary">iSUI</span> 
+                    <q-icon name="water_drop" style="color: var(--text-color);" /><span style="color: var(--text-color);">iSUI</span> 
                     </template>
                     </q-input>
 
