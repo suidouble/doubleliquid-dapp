@@ -97,6 +97,15 @@ class LiquidDouble {
             return true;
         }
 
+        if (this.__initializationPromise) {
+            return await this.__initializationPromise;
+        }
+
+        this.__initializationPromiseResolver = null;
+        this.__initializationPromise = new Promise((res)=>{
+            this.__initializationPromiseResolver = res;
+        });
+
         if (!this._suiMaster) {
             const suiMaster = new SuiMaster({provider: 'local', as: this._as, debug: this._debug});
             await suiMaster.initialize();
@@ -144,6 +153,8 @@ class LiquidDouble {
         }
 
         this._isInitialized = true;
+        
+        this.__initializationPromiseResolver();
     }
 
     async requestSuiFromFaucet() {
@@ -688,6 +699,8 @@ class LiquidDouble {
      * Note that price is subject for fluctation and will be little different on the next contract method call
      */
     async getCurrentPrice() {
+        await this.initialize();
+
         const eventsResponse = await this._mod.fetchEvents({eventTypeName: 'PriceEvent', order: 'descending'});
         if (eventsResponse && eventsResponse.data && eventsResponse.data[0]) {
             const suiEvent = eventsResponse.data[0];

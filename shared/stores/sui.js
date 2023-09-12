@@ -78,6 +78,7 @@ export const useSuiStore = defineStore('sui', {
 					firstVPackageId: settings.firstVPackageId,
 					liquidStoreId: settings.liquidStoreId,
 				});
+				this.getCurrentPrice();
 				if (suiMaster.connectedChain != this.connectedChain) {
 					this.connectedChain = suiMaster.connectedChain;
 					this.getRecentPrices();
@@ -105,7 +106,7 @@ export const useSuiStore = defineStore('sui', {
 				if (averateGrowthCount > 0) {
 					averateGrowth = averateGrowth / averateGrowthCount;
 				}
-				if (averateGrowth < 1.004) {
+				if (averateGrowth < 1.000114) {
 					averateGrowth = 1.000114;
 				}
 

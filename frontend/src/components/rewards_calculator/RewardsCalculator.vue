@@ -154,6 +154,9 @@ export default {
             // }
 
             this.simulatorInput = parseFloat((''+this.simulatorInput).replace(/[^\d.-]/g, ''));  // ''+(''+this.simulatorInput).replace(/[^\d.]/g, '');
+            if (isNaN(this.simulatorInput)) {
+                this.simulatorInput = '10';
+            }
             this.simulate();
             // this.simulatorInput = ''+parseFloat(this.simulatorInput.replace(/[^0-9.]/g,''), 10).toFixed(3);
         },

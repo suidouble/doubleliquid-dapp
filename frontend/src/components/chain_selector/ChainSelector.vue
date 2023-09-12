@@ -40,9 +40,9 @@ export default {
 
             settings: {
                 'sui:localnet': {
-                    packageId: '0x8929b38436b342c0bc325f269b019a2f06836fbbdfec23a1426ebd86cfaecfde',
-                    firstVPackageId: '0xf8fdf01acdbad7f73da30ba38cd52ff2a1f0496bd6613fabf0f1e3781cfb66d1',
-                    liquidStoreId: '0x376bc47e61c45ed0d21bd0891f97ed96c8591b3cea5be4e174d3f207b1ab9cb3',
+                    packageId: '0xe7be4504c3c5d0ee08c7559e5a1d0fbcc57771e0813ce203e7d5a9c4ee20f713',
+                    firstVPackageId: '',
+                    liquidStoreId: '0x85dd33d4278e0d1bbc986bcfe59f00461d1b1adc5e11ba7b0c679059f5fcfd4a',
                 },
                 'sui:devnet': {
                     packageId: '0x6d9b392ac3d96fd0779d825418680c91ccfa5a15ba20c0c7321df9bde0690963',
@@ -53,7 +53,8 @@ export default {
                     liquidStoreId: '0x884e328097377ae266feeda19ed774092dc9035fb82755bfd61cca4dd2c4c366',
                 },
                 'sui:mainnet': {
-                    packageId: '0x67e77b4e79e8c157e42c18eecf68e25047f6f95e657bd65387189411f2898ce3',
+                    packageId: '0x55458aa4e4338ed691a95f6ff54e36ee661645265fdeb3732b55b646f0bddb92',
+                    firstVPackageId: "0x67e77b4e79e8c157e42c18eecf68e25047f6f95e657bd65387189411f2898ce3",
                     liquidStoreId: '0x78d9273a9f774a2bd6c35cf79fbcf4029ee076cc249207610a3bcc0d6d0efc34',
                 },
             },
