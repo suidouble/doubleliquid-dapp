@@ -98,8 +98,10 @@ export const useSuiStore = defineStore('sui', {
 
 				prices.forEach((p)=>{
 					if (averateGrowthCount < 7) {
-						averateGrowth = averateGrowth + p.growth;
-						averateGrowthCount++;
+						if (p.growth > 1) { // ignore first few epochs
+							averateGrowth = averateGrowth + p.growth;
+							averateGrowthCount++;
+						}
 					}
 				});
 

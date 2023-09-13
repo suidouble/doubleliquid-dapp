@@ -303,6 +303,15 @@ export default {
                     sortable: true
                 },
                 {
+                    name: 'ImmutablePool',
+                    required: true,
+                    label: 'ImmutablePool',
+                    align: 'left',
+                    field: row => row.immutable_pool_sui,
+                    // format: val => `${val}`,
+                    sortable: true
+                },
+                {
                     name: 'token_total_supply',
                     required: true,
                     label: 'Token Supply',
