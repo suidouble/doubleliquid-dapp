@@ -40,22 +40,26 @@ export default {
 
             settings: {
                 'sui:localnet': {
-                    packageId: '0xe7be4504c3c5d0ee08c7559e5a1d0fbcc57771e0813ce203e7d5a9c4ee20f713',
+                    packageId: '0x9454ab708467949764d1d9c40095382b00e21b29628832031a71562dbc373a4f',
                     firstVPackageId: '',
-                    liquidStoreId: '0x85dd33d4278e0d1bbc986bcfe59f00461d1b1adc5e11ba7b0c679059f5fcfd4a',
+                    liquidStoreId: '0x46aee6cab2d64ead6ac7019d2804bf528bb2ce586385405f692a1832fed4e648',
+                    liquidStatsId: '0x14889dd9bec620b16de985848c1aa1abc0e13452975ff1ddfb03eaa3a3b106ce',
                 },
                 'sui:devnet': {
                     packageId: '0x6d9b392ac3d96fd0779d825418680c91ccfa5a15ba20c0c7321df9bde0690963',
                     liquidStoreId: '0x4a6d93a6ead0f0c47b5e75e25ef28bd7080aa89151b61ec2e6f8bb24bc135ac3',
                 },
-                'sui:testnet': {
-                    packageId: '0xc797288b493acb9c18bd9e533568d0d88754ff617ecc6cc184d4a66bce428bdc',
+                'sui:testnet': {        
+                    packageId: "0xed67b387dbf8f5a558dfda8fbcaad717a0ada8f67ba8529df38b21b3981e9795",
+                    firstVPackageId: "0xc797288b493acb9c18bd9e533568d0d88754ff617ecc6cc184d4a66bce428bdc",
                     liquidStoreId: '0x884e328097377ae266feeda19ed774092dc9035fb82755bfd61cca4dd2c4c366',
+                    liquidStatsId: '0xd01418b7822bccd7b642ce28262019fb9eed66844e0db4d2b67c328049b37379',
                 },
                 'sui:mainnet': {
-                    packageId: '0x55458aa4e4338ed691a95f6ff54e36ee661645265fdeb3732b55b646f0bddb92',
+                    packageId: '0x7372d1e5655441ccf754a637bf9f9e37a8ca113a2fa00f6e2b8f793abbfbdccd',
                     firstVPackageId: "0x67e77b4e79e8c157e42c18eecf68e25047f6f95e657bd65387189411f2898ce3",
                     liquidStoreId: '0x78d9273a9f774a2bd6c35cf79fbcf4029ee076cc249207610a3bcc0d6d0efc34',
+                    liquidStatsId: '0x7f8cd8bc2f9dc2b87a7b666affa222e207780d55518bbd4241a04ef2e9349f8b',
                 },
             },
 		}

@@ -14,6 +14,8 @@ class LiquidDouble {
         }
 
         this._liquidStoreId = params.liquidStoreId || null;
+        this._liquidStatsId = params.liquidStatsId || null;
+
         this._as = params.as || 'admin';
 
         this._suiMaster = params.suiMaster || null;
@@ -248,7 +250,12 @@ class LiquidDouble {
             amount = BigInt(Math.floor(gonna));
         }
 
-        const res = await this._mod.moveCall('deposit', [this._liquidStoreId, {type: 'SUI', amount: amount}, '0x0000000000000000000000000000000000000005']);
+        let res = null;
+        if (this._liquidStatsId) {
+            res = await this._mod.moveCall('deposit_v2', [this._liquidStoreId, {type: 'SUI', amount: amount}, this._liquidStatsId, '0x0000000000000000000000000000000000000005']);
+        } else {
+            res = await this._mod.moveCall('deposit', [this._liquidStoreId, {type: 'SUI', amount: amount}, '0x0000000000000000000000000000000000000005']);
+        }
 
         if (res && res.status && res.status == 'success') {
             res.ldAmountSend = amount;
@@ -286,13 +293,25 @@ class LiquidDouble {
 
         this.log('going to withdraw', amount);
 
-        const moveParams = [
-            this._liquidStoreId,
-            {type: this.coinType, amount: amount},
-            '0x0000000000000000000000000000000000000005'
-        ];
+        let res = null;
+        if (this._liquidStatsId) {
+            const moveParams = [
+                this._liquidStoreId,
+                {type: this.coinType, amount: amount},
+                this._liquidStatsId,
+                '0x0000000000000000000000000000000000000005'
+            ];
+            res = await this._mod.moveCall('withdraw_v2', moveParams);
+        } else {
+            const moveParams = [
+                this._liquidStoreId,
+                {type: this.coinType, amount: amount},
+                '0x0000000000000000000000000000000000000005'
+            ];
+            res = await this._mod.moveCall('withdraw', moveParams);
+        }
 
-        const res = await this._mod.moveCall('withdraw', moveParams);
+
         if (res && res.status && res.status == 'success') {
             // lets return the promise id
             this.log('got a promise');
@@ -400,7 +419,14 @@ class LiquidDouble {
         this.log('going to fulfill promise', promiseIdToUse);
 
         try {
-            const res = await this._mod.moveCall('fulfill', [this._liquidStoreId, promiseIdToUse, '0x0000000000000000000000000000000000000005']);
+            let res = null;
+
+            if (this._liquidStatsId) {
+                res = await this._mod.moveCall('fulfill_v2', [this._liquidStoreId, promiseIdToUse, this._liquidStatsId, '0x0000000000000000000000000000000000000005']);
+            } else {
+                res = await this._mod.moveCall('fulfill', [this._liquidStoreId, promiseIdToUse, '0x0000000000000000000000000000000000000005']);
+            }
+
             if (res && res.status && res.status == 'success') {
                 this.log('promise fulfilled', promiseIdToUse);
 
@@ -444,10 +470,21 @@ class LiquidDouble {
     async once_per_epoch() {
         const txb = new TransactionBlock();
         // const ss = txb.moveCall({ target: `0x2::object::sui_system_state`, arguments: [] });
-        txb.moveCall({ target: ''+this._packageId+'::suidouble_liquid::once_per_epoch_if_needed', arguments:[
-            txb.pure(this._liquidStoreId),
-            txb.object('0x0000000000000000000000000000000000000005'), // SUI_SYSTEM_STATE_OBJECT_ID
-        ]});
+
+        if (this._liquidStatsId) {
+            txb.moveCall({ target: ''+this._packageId+'::suidouble_liquid::once_per_epoch_if_needed_v2', arguments:[
+                txb.pure(this._liquidStoreId),
+                txb.object(this._liquidStatsId),
+                txb.object('0x0000000000000000000000000000000000000005'), // SUI_SYSTEM_STATE_OBJECT_ID
+            ]});
+        } else {
+            txb.moveCall({ target: ''+this._packageId+'::suidouble_liquid::once_per_epoch_if_needed', arguments:[
+                txb.pure(this._liquidStoreId),
+                txb.object('0x0000000000000000000000000000000000000005'), // SUI_SYSTEM_STATE_OBJECT_ID
+            ]});
+        }
+
+
         const res = await this._mod.moveCall('once_per_epoch_if_needed', {tx: txb});
         if (res && res.status && res.status == 'success') {
             return true;

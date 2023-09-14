@@ -443,6 +443,7 @@ export default {
 	watch:{
         simulation1: function() {
             if (this.simulation1) {
+                window.__simulationNameToN = {};
                 this.epochRows = this.simulation1.epochs;
                 this.transactionsRows = this.simulation1.transactions;
                 this.notFulfilledPromises = this.findNotFulfilledPromises();

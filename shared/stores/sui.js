@@ -77,6 +77,7 @@ export const useSuiStore = defineStore('sui', {
 					packageId: settings.packageId,
 					firstVPackageId: settings.firstVPackageId,
 					liquidStoreId: settings.liquidStoreId,
+					liquidStatsId: settings.liquidStatsId,
 				});
 				this.getCurrentPrice();
 				if (suiMaster.connectedChain != this.connectedChain) {

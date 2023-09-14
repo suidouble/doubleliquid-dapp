@@ -71,15 +71,15 @@ export default {
 			}
 
 			let userN = 0;
-			if (window.__simulationNameToN[user] !== undefined) {
-				userN = window.__simulationNameToN[user];
+			if (window.__simulationNameToN['user_'+user] !== undefined) {
+				userN = window.__simulationNameToN['user_'+user];
 			} else {
 				for (const key in window.__simulationNameToN) {
 					if (window.__simulationNameToN[key] == userN) {
 						userN++;
 					}
 				}
-				window.__simulationNameToN[user] = userN;
+				window.__simulationNameToN['user_'+user] = userN;
 			}
 
 			const avatars = [
