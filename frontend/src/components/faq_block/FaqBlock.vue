@@ -137,7 +137,7 @@
                         <q-card-section>
                             <ul>
                                 <li>Check out the <a href="https://www.youtube.com/watch?v=a4WDbK9iCa0" target="_blank">demo video</a></li>
-                                <li>Read the DoubleLiquid <a href="https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.91.pdf" target="_blank">hackpaper</a></li>
+                                <li>Read the DoubleLiquid <a href="https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.92.pdf" target="_blank">hackpaper</a></li>
                                 <li>Take a look at the <router-link to="/simulations">simulations</router-link> we run while building it</li>
                                 <li><a href="https://twitter.com/double2liquid" target="_blank">Follow us on twitter</a> and feel free to DM us with questions</li>
                             </ul>

@@ -9,7 +9,7 @@
         <div class="fit row no-wrap justify-center items-start content-start">
 
           <q-btn flat type="a" href="https://github.com/suidouble/doubleliquid-dapp" label="GitHub" />
-          <q-btn flat type="a" href="https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.91.pdf" label="Hackpaper" />
+          <q-btn flat type="a" href="https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.92.pdf" label="Hackpaper" />
           <q-btn flat type="a" href="https://twitter.com/double2liquid" target="_blank" label="Twitter" />
 
         </div>
