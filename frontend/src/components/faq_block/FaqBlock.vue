@@ -13,7 +13,7 @@
 
                     <q-card>
                         <q-card-section>
-                            The Sui platform relies on Delegated Proof-of-Stake to determine the set of validators who process transactions. 
+                            <a href="https://sui.io/" target="_blank">The Sui platform</a> relies on Delegated Proof-of-Stake to determine the set of validators who process transactions. 
                             Within each epoch(currently, an epoch is 24 hours), operations are processed by a fixed set of validators, 
                             each with a specific amount of stake from SUI token holders. A validator's share of the total stake is 
                             relevant in that it determines each validator’s share of voting power for processing transactions. 
