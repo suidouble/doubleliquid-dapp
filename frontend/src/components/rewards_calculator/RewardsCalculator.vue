@@ -110,7 +110,7 @@
                         <li>Unlock your stake, receive a tokenized version of your position, and use it in DeFi</li>
                         <li>Permissionless delegation formula with more than 100 validators optimizing APY over time</li>
                         <li>Stake and delayed unstake with no charge</li>
-                        <li>Instant unstake (subject for availability) with 2% fee (half of it goes back to the pool)</li>
+                        <li>Instant unstake (subject for availability) with 2% fee</li>
                         <li>Delayed unstake Promise is a tradeable NFT</li>
                         <li>0.5% p.a. fee for ongoing management</li>
                         <li><router-link to="/simulations">Thousands of epochs</router-link> in simulation have been run</li>
