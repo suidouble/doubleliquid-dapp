@@ -3,7 +3,7 @@
 	<q-header reveal height-hint="61.59">
 		<q-toolbar  class="q-pa-sm q-px-md" >
 
-			<q-btn flat round dense icon="menu" class="q-mr-sm lt-md" @click="menu" />
+			<!-- <q-btn flat round dense icon="menu" class="q-mr-sm lt-md" @click="menu" /> -->
 
 			<Logo inline  />
 			<q-space />

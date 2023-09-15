@@ -24,6 +24,7 @@ export const useSuiStore = defineStore('sui', {
 
 		current_price: 0,
 		current_price_loading: true,
+		current_price_loaded: false,
 		current_price_time: null,
 		current_price_timeout: 10000,
 
@@ -210,6 +211,7 @@ export const useSuiStore = defineStore('sui', {
 			try {
 
 				this.current_price = await this.doubleLiquid.getCurrentPrice();
+				this.current_price_loaded = true;
 
 			} catch(e) {
 				console.error(e);

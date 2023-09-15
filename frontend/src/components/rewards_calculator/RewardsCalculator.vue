@@ -26,17 +26,29 @@
                     <strong>Best Price</strong>
                 </div>
                 <div class="col col-6 text-right">
-                    1 Staked SUI = {{ currentPrice.toFixed(3) }} SUI
+                    1 Staked SUI = 
+                    <span v-if="!currentPriceLoaded">
+                        <q-spinner-dots size="20px" color="primary" />
+                    </span>
+                    <span v-if="currentPriceLoaded">
+                        {{ currentPrice.toFixed(3) }} SUI
+                    </span>
+                    
+                    
                 </div>
                 </div>
                 <div class="row q-pb-xs non-selectable">
                 <div class="col text-center col-12 text-center">
-                    <strong>Projected yield <q-chip 
+                    <strong>Projected yield 
+                        
+                        <q-chip 
                         icon-right="info" color="primary" text-color="white" style="background-color: rgba(48, 164, 223, 0.623); color: var(--text-color)"
-                                >APY {{ projectedApy.toFixed(3) }}%
-                    
+                                ><span v-if="!currentPriceLoaded || projectedApy == 1"><q-spinner-dots size="20px" color="white" /></span>
+                                <span v-if="currentPriceLoaded && projectedApy != 1">APY {{ projectedApy.toFixed(3) }}%</span>
                         <q-tooltip>The displayed APY represents estimate based on the moving averate price grow over the last 7 epochs</q-tooltip>
-                        </q-chip></strong>
+                        </q-chip>
+                    
+                    </strong>
                     <!-- linear-gradient(to right,#fff,rgba(48, 164, 223, 0.623)) -->
                 </div>
                 </div>
@@ -133,6 +145,7 @@ export default {
 	data() {
 		return {
             simulatorInput: '10.00',
+            currentPriceLoaded: false,
             rateGrowthPer1d: 1.00010958904,
             currentPrice: 1.1,
 
@@ -148,7 +161,7 @@ export default {
 	},
 	computed: {
         suiState: function() {
-            return ''+this.$store.sui.rateGrowthPer1d+'_'+this.$store.sui.current_price;
+            return ''+this.$store.sui.rateGrowthPer1d+'_'+this.$store.sui.current_price+'_'+this.$store.sui.current_price_loaded;
         },
 	},
 	components: {
@@ -176,6 +189,8 @@ export default {
 	},
 	methods: {
         simulate() {
+            this.currentPriceLoaded = this.$store.sui.current_price_loaded;
+
             this.rateGrowthPer1d = this.$store.sui.rateGrowthPer1d;
             this.currentPrice = this.$store.sui.current_price;
 
