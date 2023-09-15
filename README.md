@@ -2,7 +2,7 @@
 
 dApp for SUI Liquid Staking Protocol - DoubleLiquid
 
-Check out online: (www.doubleliquid.pro)[https://doubleliquid.pro/]
+Check out online: [www.doubleliquid.pro](https://doubleliquid.pro/)
 
 - decentralization
 - non-custodial, no oracles, no off-chain data needed, no off-chain processes required
@@ -11,7 +11,7 @@ Check out online: (www.doubleliquid.pro)[https://doubleliquid.pro/]
 - algorithmically sorting/choosing validators, improving APY over time 
 - thousands of epochs in simulation have been run in TDD
 
-Read more in (hackpaper)[https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.93.pdf]
+Read more in [hackpaper](https://suidouble.github.io/dl/doubleliquid_hackpaper_v0.93.pdf)
 
 ### local
 
