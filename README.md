@@ -20,3 +20,9 @@ Start for local debuging:
 npm install
 npm run dev
 ```
+
+### license 
+
+GNU AFFERO GENERAL PUBLIC LICENSE
+
+means, if you adjust it and deploy somewhere - you have to open-source it too
