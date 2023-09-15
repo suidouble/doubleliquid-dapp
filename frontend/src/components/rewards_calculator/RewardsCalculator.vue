@@ -3,7 +3,7 @@
 	<div>
 
         <q-card
-        class="my-card col-12 col-md-4"
+        class="rewards_card col-12 col-md-4"
         bordered
         flat
         >
@@ -99,11 +99,11 @@
         </q-card>
 
         <q-card
-        class="my-card col-12 col-md-4 q-mt-sm non-selectable"
+        class="rewards_card col-12 col-md-4 q-mt-sm non-selectable"
         bordered
         flat
         >
-            <q-card-section>
+            <q-card-section class="points_block">
                     <ul class="q-px-md q-my-xs">
                         <li>Full control over your tokens</li>
                         <li>No minimum stake. No minimum unstake</li>
@@ -113,7 +113,12 @@
                         <li>Instant unstake (subject for availability) with 2% fee (half of it goes back to the pool)</li>
                         <li>Delayed unstake Promise is a tradeable NFT</li>
                         <li>0.5% p.a. fee for ongoing management</li>
+                        <li><router-link to="/simulations">Thousands of epochs</router-link> in simulation have been run</li>
                     </ul>
+            </q-card-section>
+
+            <q-card-section style="padding-top: 0;">
+                <FaqBlock />
             </q-card-section>
         </q-card>
 	</div>
@@ -121,6 +126,7 @@
 </template>
 
 <script>
+import FaqBlock from '../faq_block/FaqBlock.vue';
 
 export default {
 	name: 'RewardsCalculator',
@@ -146,6 +152,7 @@ export default {
         },
 	},
 	components: {
+        FaqBlock,
 	},
 	watch:{
         simulatorInput: function() {
@@ -201,6 +208,31 @@ export default {
 
 <style >
 
+.rewards_card {
+    width: 40vw;
+}
+
+@media (max-width: 1300px) {
+    .rewards_card {
+        width: 50vw;
+    }
+} 
+@media (max-width: 1000px) {
+    .rewards_card {
+        width: 60vw;
+    }
+}
+@media (max-width: 800px) {
+    .rewards_card {
+        width: 80vw;
+    }
+} 
+@media (max-width: 600px) {
+    .rewards_card {
+        width: 95vw;
+    }
+} 
+
 .rewards_simulator .q-field__native {
         text-align: right;
         color: var(--text-color) !important;
@@ -212,5 +244,8 @@ export default {
     font-size: 16px;
 }
 
+.points_block a {
+    color: var(--q-primary);
+}
 
 </style>

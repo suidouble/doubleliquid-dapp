@@ -135,7 +135,7 @@ export default {
 
                 console.log(res);
 
-                let string = 'You are going to burn '+parseFloat(res.sentAmountAsString, 10)+' iSUI in exchange to a promise of '+res.gonnaRecieveAsString+' SUI ';
+                let string = 'You are going to burn '+parseFloat(res.sentAmountAsString, 10)+' iSUI in exchange for a promise of '+res.gonnaRecieveAsString+' SUI ';
                 string += ' going to be fulfilled in '+this.epochToDiffString(res.epoch)+'.';
 
                 string+=" Do you want to proceed?";
