@@ -277,6 +277,96 @@ class LiquidDouble {
         return false;
     }
 
+    async simulateWithdrawAndGetAmount(params = {}) {
+        let amount = params.amount || null;
+
+        if (!amount) {
+            amount = '10%';
+        }
+
+        if (amount.indexOf && amount.indexOf('%') !== -1) {
+            let currentBalance = await this.getCurrentTokenBalance();
+            amount = parseFloat(amount, 10);
+            let gonnaWithdraw = amount * (Number(currentBalance) / 100);
+            amount = BigInt(Math.floor(gonnaWithdraw));
+        }
+
+
+        this.log('going to withdraw of', amount);
+
+        const txb = new TransactionBlock();
+
+        const callArgs = [];
+        const suiCoin = await this._suiMaster.suiCoins.get(this.coinType);
+        const normalizedAmount = await suiCoin.lazyNormalizeAmount(amount);
+        const txCoinToSend = await suiCoin.coinOfAmountToTxCoin(txb, this._suiMaster.address, normalizedAmount);
+
+        if (this._liquidStatsId) {
+            callArgs.push(txb.object(this._liquidStoreId));
+            callArgs.push(txCoinToSend);
+            callArgs.push(txb.object(this._liquidStatsId));
+            callArgs.push(txb.object('0x0000000000000000000000000000000000000005'));
+
+            txb.moveCall({
+                target: `${this._packageId}::suidouble_liquid::withdraw_v2`,
+                arguments: callArgs,
+            });
+        } else {
+            callArgs.push(txb.object(this._liquidStoreId));
+            callArgs.push(txCoinToSend);
+            callArgs.push(txb.object('0x0000000000000000000000000000000000000005'));
+
+            txb.moveCall({
+                target: `${this._packageId}::suidouble_liquid::withdraw`,
+                arguments: callArgs,
+            });
+        }
+
+        const simulated = await this._suiMaster._provider.devInspectTransactionBlock({
+                transactionBlock: txb,
+                sender: this._suiMaster.address,
+            });
+
+        let foundPrice = null;
+        if (simulated.events && simulated.events.length) {
+            for (const rawEvent of simulated.events) {
+                if (rawEvent.type && rawEvent.type.indexOf('PriceEvent') !== -1) {
+                    foundPrice = rawEvent.parsedJson.price;
+                }
+            }
+        }
+
+        let epoch = null;
+        if (simulated.effects && simulated.effects.executedEpoch) {
+            epoch = parseInt(simulated.effects.executedEpoch, 10);
+        }
+
+        console.log('simulated', simulated);
+
+        if (foundPrice) {
+            const foundPriceAsNumber = Number(foundPrice);
+            const sentAmountAsNumber = Number(normalizedAmount);
+            const gonnaRecieve = BigInt(Math.floor((sentAmountAsNumber / Number(MIST_PER_SUI) * foundPriceAsNumber)));
+
+            const ret = {
+                gonnaRecieve: gonnaRecieve,
+                gonnaRecieveAsString: '',
+                sentAmount: normalizedAmount,
+                sentAmountAsString: '',
+                epoch: (epoch + 2),
+            };
+
+            ret.gonnaRecieveAsString = await suiCoin.amountToString(gonnaRecieve);
+            ret.sentAmountAsString = await suiCoin.amountToString(normalizedAmount);
+
+            console.error('ret', ret);
+
+            return ret;
+        } else {
+            throw new Error('can not simulate withdrawal');
+        }
+    }
+
     async withdraw(params = {}) {
         let amount = params.amount || null;
 
