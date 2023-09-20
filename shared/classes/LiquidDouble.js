@@ -62,8 +62,10 @@ class LiquidDouble {
                 if (growth < 1) {
                     growth = 1;
                 }
+
+                let priceAsFloat = parseFloat(price / Number(MIST_PER_SUI));
                 
-                ret.unshift({ price: price, growth: growth, epoch: (''+i) });
+                ret.unshift({ price: price, growth: growth, epoch: (''+i), priceAsFloat: priceAsFloat });
             }
 
             // console.log('epoch', i, price, growth, Math.pow(growth, 365));

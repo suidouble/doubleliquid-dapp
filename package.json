@@ -24,8 +24,8 @@
     "fastify": "^4.2.0",
     "lockfile": "^1.0.4",
     "node-fetch": "^2.6.7",
-    "suidouble": "^0.0.45",
-    "vue-sui": "^0.0.45",
+    "suidouble": "^0.0.48",
+    "vue-sui": "^0.0.48",
     "vue3-apexcharts": "^1.4.4",
     "winston": "^2.3.1"
   },
