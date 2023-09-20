@@ -31,10 +31,11 @@
                         <q-spinner-dots size="20px" color="primary" />
                     </span>
                     <span v-if="currentPriceLoaded">
-                        {{ currentPrice.toFixed(3) }} SUI
+                        {{ currentPrice.toFixed(4) }} SUI
                     </span>
                     
-                    
+                    <PriceChartIcon />                    
+
                 </div>
                 </div>
                 <div class="row q-pb-xs non-selectable">
@@ -139,6 +140,7 @@
 
 <script>
 import FaqBlock from '../faq_block/FaqBlock.vue';
+import PriceChartIcon from './PriceChartIcon.vue';
 
 export default {
 	name: 'RewardsCalculator',
@@ -166,6 +168,7 @@ export default {
 	},
 	components: {
         FaqBlock,
+        PriceChartIcon,
 	},
 	watch:{
         simulatorInput: function() {
