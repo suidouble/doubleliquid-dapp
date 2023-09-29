@@ -138,7 +138,7 @@ export default {
             this.series[0].data = [];
             if (this.$store.sui && this.$store.sui.prices) {
                 for (let i = (this.$store.sui.prices.length - 1); i>=0; i--) {
-                    if (this.categories.length < 9) {
+                    if (i < 10) {
                         const price = this.$store.sui.prices[i];
                         this.categories.push(price.epoch);
                         this.series[0].data.push(price.priceAsFloat);
