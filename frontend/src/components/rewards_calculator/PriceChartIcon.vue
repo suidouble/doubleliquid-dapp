@@ -138,9 +138,11 @@ export default {
             this.series[0].data = [];
             if (this.$store.sui && this.$store.sui.prices) {
                 for (let i = (this.$store.sui.prices.length - 1); i>=0; i--) {
-                    const price = this.$store.sui.prices[i];
-                    this.categories.push(price.epoch);
-                    this.series[0].data.push(price.priceAsFloat);
+                    if (this.categories.length < 9) {
+                        const price = this.$store.sui.prices[i];
+                        this.categories.push(price.epoch);
+                        this.series[0].data.push(price.priceAsFloat);
+                    }
                 }
             }
 
