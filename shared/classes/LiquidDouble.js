@@ -49,10 +49,15 @@ class LiquidDouble {
 
         const ret = [];
 
+        let lastPrice = null;
+        let lastPriceGrowth = null;
+
         for (let i = epochs[0]; i <= epochs[epochs.length - 1]; i++) {
             const price = prices[''+i];
 
             // @todo: projection for empty epochs
+
+            console.log('price', price, (''+i));
 
             if (price) {
                 let growth = 1;
@@ -66,6 +71,19 @@ class LiquidDouble {
                 let priceAsFloat = parseFloat(price / Number(MIST_PER_SUI));
                 
                 ret.unshift({ price: price, growth: growth, epoch: (''+i), priceAsFloat: priceAsFloat });
+
+                lastPrice = price;
+                lastPriceGrowth = growth;
+            } else {
+                if (lastPrice) {
+                    const nearPrice = parseInt(lastPrice * lastPriceGrowth);
+                    let priceAsFloat = parseFloat(nearPrice / Number(MIST_PER_SUI));
+                    ret.unshift({ price: nearPrice, growth: lastPriceGrowth, epoch: (''+i), priceAsFloat: priceAsFloat });
+
+                    console.log('price zzzz', nearPrice, (''+i));
+
+                    lastPrice = nearPrice;
+                }
             }
 
             // console.log('epoch', i, price, growth, Math.pow(growth, 365));
