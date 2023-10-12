@@ -848,7 +848,7 @@ class LiquidDouble {
     async getCurrentPrice() {
         await this.initialize();
 
-        const eventsResponse = await this._mod.fetchEvents({eventTypeName: 'PriceEvent', order: 'descending'});
+        const eventsResponse = await this._mod.fetchEvents({eventTypeName: 'PriceEvent', order: 'descending', limit: 1});
         if (eventsResponse && eventsResponse.data && eventsResponse.data[0]) {
             const suiEvent = eventsResponse.data[0];
             const price = BigInt(suiEvent.parsedJson.price);
