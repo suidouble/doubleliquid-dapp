@@ -73,7 +73,10 @@ class LiquidDouble {
                 ret.unshift({ price: price, growth: growth, epoch: (''+i), priceAsFloat: priceAsFloat });
 
                 lastPrice = price;
-                lastPriceGrowth = growth;
+
+                if (growth > 1) {
+                    lastPriceGrowth = growth;
+                }
             } else {
                 if (lastPrice) {
                     const nearPrice = parseInt(lastPrice * lastPriceGrowth);
